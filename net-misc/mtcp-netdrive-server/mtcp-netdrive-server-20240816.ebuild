@@ -5,7 +5,7 @@ EAPI=8
 
 DESCRIPTION="The mTCP NetDrive server is a program written in Go to provide network mountable disk images for MSDOS PCs. See https://www.brutman.com/mTCP/mTCP_NetDrive.html"
 HOMEPAGE="https://www.brutman.com/mTCP/mTCP_NetDrive.html"
-SRC_URI="https://www.brutman.com/mTCP/download/mTCP_NetDrive_2024-08-20_Servers.zip"
+SRC_URI="https://www.brutman.com/mTCP/download/mTCP_NetDrive_2024-08-16_Servers.zip"
 
 LICENSE="GPL-2+"
 SLOT="0"
