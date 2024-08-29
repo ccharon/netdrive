@@ -15,7 +15,10 @@ sync-uri = https://github.com/ccharon/netdrive.git
 ```
 and then do a `emerge --sync` to get the ebuilds.
 
-To install mtcp-netdrive-server, you will have to add it to your package.keywords file, as it is masked. 
+To install mtcp-netdrive-server, you will have to add it to your package.keywords file, as it is masked. Or simply use:
+```bash
+ emerge --ask --autounmask mtcp-netdrive-server::netdrive
+```
  
 A User Account + Group and a Systemd Service will be created to run the server.
 
