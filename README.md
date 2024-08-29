@@ -1,4 +1,4 @@
-# mTCP NetDrive Gentoo Repositoy
+# mTCP NetDrive Gentoo Repository
 
 Provides a Gentoo Ebuild Repository for brutman mTCP NetDrive
 
