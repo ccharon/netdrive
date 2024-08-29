@@ -16,15 +16,12 @@ SLOT="0"
 KEYWORDS="~amd64 ~arm64"
 
 src_install() {
-    local exec_name="netdrive"
-    local exe
-
     case ${ARCH} in
         amd64)
-            exe="linux_x86/${exec_name}"
+            mv "linux_x86/netdrive" "${S}/mtcp-netdrive-server"
             ;;
         arm64)
-            exe="linux_arm/${exec_name}"
+            mv "linux_arm/netdrive" "${S}/mtcp-netdrive-server"
             ;;
         *)
             die "Unsupported architecture: ${ARCH}"
@@ -32,5 +29,5 @@ src_install() {
     esac
 
     exeinto /usr/bin
-    doexe "${S}/${exe}"
+    doexe "${S}/mtcp-netdrive-server"
 }
