@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=simple
 User=mtcp-netdrive-server
-ExecStart=/usr/bin/mtcp-netdrive-server serve -port $PORT -image_dir $IMAGE_DIR
+ExecStart=/usr/bin/mtcp-netdrive-server serve -headless -port $PORT -image_dir $IMAGE_DIR -max_active_sessions $MAX_SESSIONS
 EnvironmentFile=/etc/mtcp-netdrive-server.conf
 Restart=always
 StandardOutput=journal
