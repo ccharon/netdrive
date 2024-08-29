@@ -39,6 +39,8 @@ systemctl start mtcp-netdrive-server
 
 If you have a firewall installed be sure to allow access to port 8086 or what ever port you selected in the config file.
 
-To access the default image use this command on the msdos side
-```netdrive connect x.x.x.x:8086 disk.dsk k:```
-wher x.x.x.x is the servers ip address, 8086 the port the service is running, disk.dsk is the image you want to access and finally k: is a drive letter, choose one that is unused
+To access the default image use this command on the msdos side:
+```bash
+netdrive connect x.x.x.x:8086 disk.dsk k:
+```
+where x.x.x.x is the servers ip address, 8086 the port the service is running, disk.dsk is the image you want to access and finally k: is a drive letter, choose one that is unused
