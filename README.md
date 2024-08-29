@@ -19,11 +19,12 @@ To install mtcp-netdrive-server, you will have to add it to your package.keyword
  
 A User Account + Group and a Systemd Service will be created to run the server.
 
-The executable itself will be installed in /usr/bin/mtcp-netdrive-server.
+The executable itself will be installed as ```/usr/bin/mtcp-netdrive-server```.
 
-Images will be served from /var/lib/mtcp-netdrive by default, but this can be changed in /etc/mtcp-netdrive-server.conf .
-Also a default 256MB image will be created in /var/lib/mtcp-netdrive/disk.dsk . If you store your own images, do not forget
-to change the owner and permissions to mtcp-netdrive:mtcp-netdrive.
+Images will be served from ```/var/lib/mtcp-netdrive``` by default, but this can be changed in ```/etc/mtcp-netdrive-server.conf``` .
+Also a default 256MB image will be created as ```/var/lib/mtcp-netdrive/disk.dsk```. 
+
+If you store your own images, do not forget to change the owner and permissions to mtcp-netdrive:mtcp-netdrive.
 ```bash
 chown mtcp-netdrive:mtcp-netdrive /var/lib/mtcp-netdrive/disk.dsk
 chmod 660 /var/lib/mtcp-netdrive/disk.dsk
@@ -37,3 +38,7 @@ systemctl start mtcp-netdrive-server
 ```
 
 If you have a firewall installed be sure to allow access to port 8086 or what ever port you selected in the config file.
+
+To access the default image use this command on the msdos side
+```netdrive connect x.x.x.x:8086 disk.dsk k:```
+wher x.x.x.x is the servers ip address, 8086 the port the service is running, disk.dsk is the image you want to access and finally k: is a drive letter, choose one that is unused
