@@ -36,3 +36,4 @@ systemctl enable mtcp-netdrive-server
 systemctl start mtcp-netdrive-server
 ```
 
+If you have a firewall installed be sure to allow access to port 8086 or what ever port you selected in the config file.
