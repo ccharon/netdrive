@@ -60,11 +60,16 @@ src_install() {
 
     DEFAULT_DISK_IMAGE="${MTCP_NETDRIVE_SERVER_DIR}/default_disk_image.dsk"
 
+    INSTALL_MARKER="/var/lib/mtcp-netdrive-server/.installed"
+
     # Create a default disk image if it does not exist
-    if [[ ! -f "${DEFAULT_DISK_IMAGE}" ]]; then
+    if [[ ! -f "${INSTALL_MARKER}" ]]; then
         /usr/bin/mtcp-netdrive-server create hd 256 FAT16B "${DEFAULT_DISK_IMAGE}"
         fowners mtcp-netdrive-server:mtcp-netdrive-server "${DEFAULT_DISK_IMAGE}"
         fperms 0640 "${DEFAULT_DISK_IMAGE}"
+        touch "${INSTALL_MARKER}"
+        fowners mtcp-netdrive-server:mtcp-netdrive-server "${INSTALL_MARKER}"
+        fperms 0640 "${INSTALL_MARKER}"
     fi
 }
 
