@@ -1,0 +1,15 @@
+[Unit]
+Description=mTCP NetDrive Server
+After=network.target
+
+[Service]
+Type=simple
+User=mtcp-netdrive-server
+ExecStart=/usr/bin/mtcp-netdrive-server serve -port $PORT -image_dir $IMAGE_DIR
+EnvironmentFile=/etc/mtcp-netdrive-server.conf
+Restart=always
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

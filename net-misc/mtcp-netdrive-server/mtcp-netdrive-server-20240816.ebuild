@@ -15,6 +15,11 @@ S="${WORKDIR}/mTCP_NetDrive_${NETDRIVE_VERSION}_Servers"
 SLOT="0"
 KEYWORDS="~amd64 ~arm64"
 
+DEPEND="acct-group/mtcp-netdrive-server
+        acct-user/mtcp-netdrive-server"
+
+inherit systemd
+
 src_install() {
     case ${ARCH} in
         amd64)
@@ -30,4 +35,15 @@ src_install() {
 
     exeinto /usr/bin
     doexe "${S}/mtcp-netdrive-server"
+
+    # install systemd service
+    systemd_dounit "${FILESDIR}"/mtcp-netdrive-server.service
+
+    # Install configuration file
+    insinto /etc
+    doins "${FILESDIR}"/mtcp-netdrive-server.conf
+
+    # Set ownership and permissions
+    fowners mtcp-netdrive-server:mtcp-netdrive-server /etc/mtcp-netdrive-server.conf
+    fperms 0640 /etc/mtcp-netdrive-server.conf
 }
