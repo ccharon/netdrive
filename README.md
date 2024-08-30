@@ -31,8 +31,8 @@ Images will be served from ```/var/lib/mtcp-netdrive``` by default, but this can
 Create your own image as root. Do not forget to change the owner and permissions to mtcp-netdrive:mtcp-netdrive.
 ```bash
 $ mtcp-netdrive-server create hd 256 FAT16B /var/lib/mtcp-netdrive-server/disk.dsk
-$ chown mtcp-netdrive:mtcp-netdrive /var/lib/mtcp-netdrive/disk.dsk
-$ chmod 660 /var/lib/mtcp-netdrive/disk.dsk
+$ chown mtcp-netdrive-server:mtcp-netdrive-server /var/lib/mtcp-netdrive-server/disk.dsk
+$ chmod 660 /var/lib/mtcp-netdrive-server/disk.dsk
 ```
 
 Ensure the systemd service is enabled and started
