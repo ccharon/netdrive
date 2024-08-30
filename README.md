@@ -26,7 +26,7 @@ A User Account + Group and a Systemd Service will be created to run the server.
 
 The executable itself will be installed as ```/usr/bin/mtcp-netdrive-server```.
 
-Images will be served from ```/var/lib/mtcp-netdrive``` by default, but this can be changed in ```/etc/mtcp-netdrive-server.conf``` .
+Images will be served from ```/var/lib/mtcp-netdrive-server``` by default, but this can be changed in ```/etc/mtcp-netdrive-server.conf``` .
 
 Create your own image as root. Do not forget to change the owner and permissions to mtcp-netdrive:mtcp-netdrive.
 ```bash
