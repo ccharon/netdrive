@@ -19,7 +19,7 @@ and then do a `emerge --sync` to get the ebuilds.
 
 To install mtcp-netdrive-server, you will have to add it to your package.keywords file, as it is masked. Or simply use:
 ```bash
- emerge --ask --autounmask mtcp-netdrive-server::netdrive
+$ emerge --ask --autounmask mtcp-netdrive-server::netdrive
 ```
  
 A User Account + Group and a Systemd Service will be created to run the server.
@@ -27,25 +27,25 @@ A User Account + Group and a Systemd Service will be created to run the server.
 The executable itself will be installed as ```/usr/bin/mtcp-netdrive-server```.
 
 Images will be served from ```/var/lib/mtcp-netdrive``` by default, but this can be changed in ```/etc/mtcp-netdrive-server.conf``` .
-Also a default 256MB image will be created as ```/var/lib/mtcp-netdrive/disk.dsk```. 
 
-If you store your own images, do not forget to change the owner and permissions to mtcp-netdrive:mtcp-netdrive.
+Create your own image as root. Do not forget to change the owner and permissions to mtcp-netdrive:mtcp-netdrive.
 ```bash
-chown mtcp-netdrive:mtcp-netdrive /var/lib/mtcp-netdrive/disk.dsk
-chmod 660 /var/lib/mtcp-netdrive/disk.dsk
+$ mtcp-netdrive-server create hd 256 FAT16B /var/lib/mtcp-netdrive-server/disk.dsk
+$ chown mtcp-netdrive:mtcp-netdrive /var/lib/mtcp-netdrive/disk.dsk
+$ chmod 660 /var/lib/mtcp-netdrive/disk.dsk
 ```
 
 Ensure the systemd service is enabled and started
 ```bash
-systemctl daemon-reload
-systemctl enable mtcp-netdrive-server
-systemctl start mtcp-netdrive-server
+$ systemctl daemon-reload
+$ systemctl enable mtcp-netdrive-server
+$ systemctl start mtcp-netdrive-server
 ```
 
 If you have a firewall installed be sure to allow access to port 8086 or what ever port you selected in the config file.
 
-To access the default image use this command on the msdos side:
+To access the image use this command on the msdos side: (after installing the netdrive client)
 ```bash
-netdrive connect x.x.x.x:8086 disk.dsk k:
+$ netdrive connect x.x.x.x:8086 disk.dsk k:
 ```
 where x.x.x.x is the servers ip address, 8086 the port the service is running, disk.dsk is the image you want to access and finally k: is a drive letter, choose one that is unused
