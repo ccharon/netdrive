@@ -4,13 +4,11 @@
 
 Provides a Gentoo Ebuild Repository for brutman mTCP NetDrive
 
-This Repos only purpose is to have a Gentoo Ebuild that installs https://www.brutman.com/mTCP/mTCP_NetDrive.html and provides a systemd service to start netdrive and serve image provided in a directory. 
-
+This Repos only purpose is to have a Gentoo Ebuild that installs https://www.brutman.com/mTCP/mTCP_NetDrive.html and provides a systemd service to start netdrive and serve images provided in a directory. 
 
 ### Adding the repo
 
 to add this repo to your installation use
-
 ```bash
 $ eselect repository add netdrive git https://github.com/ccharon/netdrive.git
 ```
@@ -19,7 +17,7 @@ and then do a `emerge --sync` to get the ebuilds.
 
 ### Installation
 
-To install mtcp-netdrive, you will have to add it to your package.keywords file, as it is masked. Or simply use:
+To install mtcp-netdrive, you will have to add it to your package.keywords as it is masked. Or simply use:
 ```bash
 $ emerge --ask --autounmask mtcp-netdrive::netdrive
 ```
@@ -34,7 +32,7 @@ Values can be changed in ```/etc/mtcp-netdrive.conf``` .
 
 ### Image Creation
 
-Create your own image as root. Do not forget to change the owner and permissions to mtcp-netdrive:mtcp-netdrive.
+Create your own image as root. Do not forget to change the permissions and owner.
 ```bash
 $ mtcp-netdrive create hd 256 FAT16B /var/lib/mtcp-netdrive/disk.dsk
 $ chown mtcp-netdrive:mtcp-netdrive /var/lib/mtcp-netdrive/disk.dsk
@@ -58,10 +56,10 @@ $ systemctl start mtcp-netdrive
 
 If you have a firewall installed be sure to allow access to port 8086 or what ever port you selected in the config file.
 
-#### Client
+#### MSDOS Client
 
 To access the image use this command on the msdos side: (after installing the netdrive client)
 ```bash
-$ netdrive connect x.x.x.x:8086 disk.dsk k:
+$ netdrive connect x.x.x.x:8086 disk.dsk f:
 ```
-where x.x.x.x is the servers ip address, 8086 the port the service is running, disk.dsk is the image you want to access and finally k: is a drive letter, choose one that is unused
+where x.x.x.x is the servers ip address, 8086 the port the service is running, disk.dsk is the image you want to access and finally f: is a drive letter reserved by netdrive.sys.
