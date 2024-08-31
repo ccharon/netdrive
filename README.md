@@ -7,26 +7,32 @@ Provides a Gentoo Ebuild Repository for brutman mTCP NetDrive
 This Repos only purpose is to have a Gentoo Ebuild that installs https://www.brutman.com/mTCP/mTCP_NetDrive.html and provides a systemd service to start netdrive and serve image provided in a directory. 
 
 
-to add this repo to your installation simply create a file in /etc/portage/repos.conf/netdrive with the following content
+### Adding the repo
 
+to add this repo to your installation use
+
+```bash
+eselect repository add netdrive git https://github.com/ccharon/netdrive.git
 ```
-[netdrive]
-location = /var/db/repos/netdrive
-sync-type = git
-sync-uri = https://github.com/ccharon/netdrive.git
-```
+
 and then do a `emerge --sync` to get the ebuilds.
+
+### Installation
 
 To install mtcp-netdrive, you will have to add it to your package.keywords file, as it is masked. Or simply use:
 ```bash
 $ emerge --ask --autounmask mtcp-netdrive::netdrive
 ```
  
-A User Account + Group and a Systemd Service will be created to run the server.
+- mtcp-netdrive User + Group and a Systemd Service will be created to run the server
+- The executable itself will be installed as ```/usr/bin/mtcp-netdrive```
+- Images will be served from ```/var/lib/mtcp-netdrive```
+- logs are written to ```/var/log/mtcp-netdrive/server.log```
+- the service runs on port 8086
 
-The executable itself will be installed as ```/usr/bin/mtcp-netdrive```.
+Values can be changed in ```/etc/mtcp-netdrive.conf``` .
 
-Images will be served from ```/var/lib/mtcp-netdrive``` by default, but this can be changed in ```/etc/mtcp-netdrive.conf``` .
+### Image Creation
 
 Create your own image as root. Do not forget to change the owner and permissions to mtcp-netdrive:mtcp-netdrive.
 ```bash
@@ -34,6 +40,8 @@ $ mtcp-netdrive create hd 256 FAT16B /var/lib/mtcp-netdrive/disk.dsk
 $ chown mtcp-netdrive:mtcp-netdrive /var/lib/mtcp-netdrive/disk.dsk
 $ chmod 660 /var/lib/mtcp-netdrive/disk.dsk
 ```
+
+### Other Things
 
 For further instructions see the [official documentation](http://www.brutman.com/mTCP/Netdrive_documentation)
 
