@@ -45,6 +45,8 @@ $ chmod 660 /var/lib/mtcp-netdrive/disk.dsk
 
 For further instructions see the [official documentation](http://www.brutman.com/mTCP/Netdrive_documentation)
 
+#### Systemd 
+
 Ensure the systemd service is enabled and started
 ```bash
 $ systemctl daemon-reload
@@ -52,7 +54,11 @@ $ systemctl enable mtcp-netdrive
 $ systemctl start mtcp-netdrive
 ```
 
+#### Firewall
+
 If you have a firewall installed be sure to allow access to port 8086 or what ever port you selected in the config file.
+
+#### Client
 
 To access the image use this command on the msdos side: (after installing the netdrive client)
 ```bash
