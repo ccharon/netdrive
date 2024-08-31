@@ -1,6 +1,7 @@
 # mTCP NetDrive Gentoo Repository
 
-## NOTE: The ebuilds work fine, user, group, systemd service and so on ... but the service registers on ipv6 only on my machines so this is rather useless at the moment :P ... I am looking into the issue.
+### NOTE
+The service registers on ipv6 only on my machines so this is rather useless at the moment :P. I wrote a mail to M. Brutman and he provided me with a testing version that fixes the behavior. Once a new released version is available I will update the ebuild and it should work.
 
 Provides a Gentoo Ebuild Repository for brutman mTCP NetDrive
 
