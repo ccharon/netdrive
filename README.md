@@ -17,22 +17,22 @@ sync-uri = https://github.com/ccharon/netdrive.git
 ```
 and then do a `emerge --sync` to get the ebuilds.
 
-To install mtcp-netdrive-server, you will have to add it to your package.keywords file, as it is masked. Or simply use:
+To install mtcp-netdrive, you will have to add it to your package.keywords file, as it is masked. Or simply use:
 ```bash
-$ emerge --ask --autounmask mtcp-netdrive-server::netdrive
+$ emerge --ask --autounmask mtcp-netdrive::netdrive
 ```
  
 A User Account + Group and a Systemd Service will be created to run the server.
 
-The executable itself will be installed as ```/usr/bin/mtcp-netdrive-server```.
+The executable itself will be installed as ```/usr/bin/mtcp-netdrive```.
 
-Images will be served from ```/var/lib/mtcp-netdrive-server``` by default, but this can be changed in ```/etc/mtcp-netdrive-server.conf``` .
+Images will be served from ```/var/lib/mtcp-netdrive``` by default, but this can be changed in ```/etc/mtcp-netdrive.conf``` .
 
 Create your own image as root. Do not forget to change the owner and permissions to mtcp-netdrive:mtcp-netdrive.
 ```bash
-$ mtcp-netdrive-server create hd 256 FAT16B /var/lib/mtcp-netdrive-server/disk.dsk
-$ chown mtcp-netdrive-server:mtcp-netdrive-server /var/lib/mtcp-netdrive-server/disk.dsk
-$ chmod 660 /var/lib/mtcp-netdrive-server/disk.dsk
+$ mtcp-netdrive create hd 256 FAT16B /var/lib/mtcp-netdrive/disk.dsk
+$ chown mtcp-netdrive:mtcp-netdrive /var/lib/mtcp-netdrive/disk.dsk
+$ chmod 660 /var/lib/mtcp-netdrive/disk.dsk
 ```
 
 For further instructions see the [official documentation](http://www.brutman.com/mTCP/Netdrive_documentation)
@@ -40,8 +40,8 @@ For further instructions see the [official documentation](http://www.brutman.com
 Ensure the systemd service is enabled and started
 ```bash
 $ systemctl daemon-reload
-$ systemctl enable mtcp-netdrive-server
-$ systemctl start mtcp-netdrive-server
+$ systemctl enable mtcp-netdrive
+$ systemctl start mtcp-netdrive
 ```
 
 If you have a firewall installed be sure to allow access to port 8086 or what ever port you selected in the config file.

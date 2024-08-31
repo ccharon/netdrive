@@ -5,8 +5,8 @@ EAPI=8
 
 inherit acct-user
 
-DESCRIPTION="User for mtcp-netdrive-server"
+DESCRIPTION="User for mtcp-netdrive"
 ACCT_USER_ID=-1
-ACCT_USER_GROUPS=( mtcp-netdrive-server )
+ACCT_USER_GROUPS=( ${PN} )
 
 acct-user_add_deps

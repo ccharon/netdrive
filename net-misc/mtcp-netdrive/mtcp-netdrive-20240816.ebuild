@@ -18,8 +18,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~arm64"
 
 DEPEND="
-    acct-group/mtcp-netdrive-server
-    acct-user/mtcp-netdrive-server
+    acct-group/mtcp-netdrive
+    acct-user/mtcp-netdrive
 "
 
 BDEPEND="
@@ -46,47 +46,48 @@ src_unpack() {
 
 src_prepare() {
     default
-    mv "${S}/netdrive" "${S}/mtcp-netdrive-server"
+    mv "${S}/netdrive" "${S}/mtcp-netdrive"
 }
 
 src_install() {
     exeinto /usr/bin
-    doexe "${S}/mtcp-netdrive-server"
+    doexe "${S}/mtcp-netdrive"
 
     # install systemd service
-    systemd_dounit "${FILESDIR}"/mtcp-netdrive-server.service
+    systemd_dounit "${FILESDIR}"/mtcp-netdrive.service
 
     # Install configuration file
     insinto /etc
-    doins "${FILESDIR}"/mtcp-netdrive-server.conf
+    doins "${FILESDIR}"/mtcp-netdrive.conf
+    fowners mtcp-netdrive:mtcp-netdrive /etc/mtcp-netdrive.conf
+    fperms 0640 /etc/mtcp-netdrive.conf
 
-    # Set ownership and permissions
-    fowners mtcp-netdrive-server:mtcp-netdrive-server /etc/mtcp-netdrive-server.conf
-    fperms 0640 /etc/mtcp-netdrive-server.conf
 
-    # Define the directory path variable
-    MTCP_NETDRIVE_SERVER_DIR="/var/lib/mtcp-netdrive-server"
+    # Create filesystem images directory
+    MTCP_IMAGE_DIR="/var/lib/mtcp-netdrive"
+    keepdir "${MTCP_IMAGE_DIR}"
+    fowners mtcp-netdrive:mtcp-netdrive "${MTCP_IMAGE_DIR}"
+    fperms 0750 "${MTCP_IMAGE_DIR}"
 
-    # Create the directory for filesystem images
-    keepdir "${MTCP_NETDRIVE_SERVER_DIR}"
-    fowners mtcp-netdrive-server:mtcp-netdrive-server "${MTCP_NETDRIVE_SERVER_DIR}"
-    fperms 0750 "${MTCP_NETDRIVE_SERVER_DIR}"
-
-    dodoc "${S}/netdrive.txt"
+    # Create the log directory
+    MTCP_LOG_DIR="/var/log/mtcp-netdrive"
+    keepdir "${MTCP_LOG_DIR}"
+    fowners mtcp-netdrive:mtcp-netdrive "${MTCP_LOG_DIR}"
+    fperms 0750 "${MTCP_LOG_DIR}"
 }
 
 pkg_postinst() {
     einfo "To create disk images, use the following command:"
-    einfo "mtcp-netdrive-server create hd <size_in_MB> <filesystem_type> <output_file>"
-    einfo "Example: mtcp-netdrive-server create hd 256 FAT16B /var/lib/mtcp-netdrive-server/disk.dsk"
+    einfo "mtcp-netdrive create hd <size_in_MB> <filesystem_type> <output_file>"
+    einfo "Example: mtcp-netdrive create hd 256 FAT16B /var/lib/mtcp-netdrive/disk.dsk"
     einfo
     einfo "Make sure to set the ownership and permissions of the new disk image file"
-    einfo "chown mtcp-netdrive-server:mtcp-netdrive-server /var/lib/mtcp-netdrive-server/disk.dsk"
-    einfo "chmod 0640 /var/lib/mtcp-netdrive-server/disk.dsk"
+    einfo "chown mtcp-netdrive:mtcp-netdrive /var/lib/mtcp-netdrive/disk.dsk"
+    einfo "chmod 0640 /var/lib/mtcp-netdrive/disk.dsk"
     einfo
     einfo "For more information on advanced topics like journaling or session scoped volumes,"
     einfo "see the documentation at http://www.brutman.com/mTCP/Netdrive_documentation"
     einfo
     einfo "To start the mTCP NetDrive server, enable and start the systemd service:"
-    einfo "systemctl enable mtcp-netdrive-server"
+    einfo "systemctl enable mtcp-netdrive"
 }
