@@ -1,6 +1,6 @@
 # mTCP NetDrive Gentoo Repository
 
-### NOTE: The service registers on ipv6 only on my machines so this is rather useless at the moment :P. I wrote a mail to M. Brutman and he provided me with a testing version that fixes the behavior. Once a new released version is available I will update the ebuild and it should work.
+### NOTE: The service registers on ipv6 only on my machines so this repository is rather useless at the moment :P. I wrote a mail to M. Brutman and he provided me with a testing version that fixes the behavior. Once a new released version is available I will update the ebuild and it should work.
 
 Provides a Gentoo Ebuild Repository for brutman mTCP NetDrive
 
