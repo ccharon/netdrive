@@ -35,7 +35,7 @@ $ chown mtcp-netdrive-server:mtcp-netdrive-server /var/lib/mtcp-netdrive-server/
 $ chmod 660 /var/lib/mtcp-netdrive-server/disk.dsk
 ```
 
-For further instructions consult the [official documentation](https://docs.google.com/document/d/1MZ_a4NHpfql5y9rwRYa2JoyXFiw6r1oLEeLGFysDEG8)
+For further instructions see the [official documentation](http://www.brutman.com/mTCP/Netdrive_documentation)
 
 Ensure the systemd service is enabled and started
 ```bash

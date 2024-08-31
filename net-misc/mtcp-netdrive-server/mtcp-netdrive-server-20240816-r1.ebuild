@@ -84,6 +84,9 @@ pkg_postinst() {
     einfo "chown mtcp-netdrive-server:mtcp-netdrive-server /var/lib/mtcp-netdrive-server/disk.dsk"
     einfo "chmod 0640 /var/lib/mtcp-netdrive-server/disk.dsk"
     einfo
+    einfo "For more information on advanced topics like journaling or session scoped volumes,"
+    einfo "see the documentation at http://www.brutman.com/mTCP/Netdrive_documentation"
+    einfo
     einfo "To start the mTCP NetDrive server, enable and start the systemd service:"
     einfo "systemctl enable mtcp-netdrive-server"
 }
