@@ -12,7 +12,7 @@ This Repos only purpose is to have a Gentoo Ebuild that installs https://www.bru
 to add this repo to your installation use
 
 ```bash
-eselect repository add netdrive git https://github.com/ccharon/netdrive.git
+$ eselect repository add netdrive git https://github.com/ccharon/netdrive.git
 ```
 
 and then do a `emerge --sync` to get the ebuilds.
