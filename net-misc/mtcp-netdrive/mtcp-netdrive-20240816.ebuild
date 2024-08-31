@@ -53,6 +53,8 @@ src_install() {
     exeinto /usr/bin
     doexe "${S}/mtcp-netdrive"
 
+    dodoc "${S}/netdrive.txt"
+
     # install systemd service
     systemd_dounit "${FILESDIR}"/mtcp-netdrive.service
 
@@ -61,7 +63,6 @@ src_install() {
     doins "${FILESDIR}"/mtcp-netdrive.conf
     fowners mtcp-netdrive:mtcp-netdrive /etc/mtcp-netdrive.conf
     fperms 0640 /etc/mtcp-netdrive.conf
-
 
     # Create filesystem images directory
     MTCP_IMAGE_DIR="/var/lib/mtcp-netdrive"
