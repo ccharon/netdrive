@@ -5,7 +5,7 @@ EAPI=8
 
 MY_PV="${PV:0:4}-${PV:4:2}-${PV:6:2}"
 
-DESCRIPTION="The mTCP NetDrive server is a program written in Go to provide network mountable disk images for MSDOS PCs. See https://www.brutman.com/mTCP/mTCP_NetDrive.html"
+DESCRIPTION="The mTCP NetDrive server is written in Go to provide network mountable disk images for MS-DOS PCs."
 HOMEPAGE="https://www.brutman.com/mTCP/mTCP_NetDrive.html"
 SRC_URI="https://www.brutman.com/mTCP/download/mTCP_NetDrive_${MY_PV}_Servers.zip -> ${P}.zip"
 
