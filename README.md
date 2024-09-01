@@ -1,18 +1,14 @@
 # mTCP NetDrive Gentoo Repository
+This repo provides M. Brutmans mTCP NetDrive as Systemd Service.
+https://www.brutman.com/mTCP/mTCP_NetDrive.html
 
-### NOTE: The service registers on ipv6 only on my machines so this repository is rather useless at the moment :P. I wrote a mail to M. Brutman and he provided me with a testing version that fixes the behavior. Once a new released version is available I will update the ebuild and it should work.
-
-Provides a Gentoo Ebuild Repository for brutman mTCP NetDrive
-
-This Repos only purpose is to have a Gentoo Ebuild that installs https://www.brutman.com/mTCP/mTCP_NetDrive.html and provides a systemd service to start netdrive and serve images provided in a directory. 
+Right now as of release 20240816, the ebuild is only tested on amd64. The netdrive executable was only binding to ipv6. As a temporary workaround, the ebuild will patch the executable to bind to ipv4. The patch is based on a testing version provided by M. Brutman. Also the patch is amd64 only.
 
 ### Adding the repo
-
 to add this repo to your installation use
 ```bash
 $ eselect repository add netdrive git https://github.com/ccharon/netdrive.git
 ```
-
 and then do a `emerge --sync` to get the ebuilds.
 
 ### Installation

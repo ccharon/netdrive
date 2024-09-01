@@ -24,6 +24,7 @@ DEPEND="
 
 BDEPEND="
     app-arch/unzip
+    dev-util/bsdiff
 "
 
 inherit systemd
@@ -41,11 +42,18 @@ src_unpack() {
             ;;
     esac
 
-    unzip -j "${DISTDIR}/${P}.zip" "*/netdrive.txt" -d "${S}"
+    unzip -j "${DISTDIR}/${P}.zip" "*/netdrive.txt" -d "${S}" || die
 }
 
 src_prepare() {
     default
+
+    # Binary patch to use udp4 on amd64
+    if [[ ${ARCH} == "amd64" ]]; then
+        bspatch "${S}/netdrive" "${S}/netdrive_patched" "${FILESDIR}/patch-${PV}.bin"
+        mv "${S}/netdrive_patched" "${S}/netdrive"
+    fi
+
     mv "${S}/netdrive" "${S}/mtcp-netdrive"
 }
 
