@@ -5,7 +5,16 @@ After=network.target
 [Service]
 Type=simple
 User=mtcp-netdrive
-ExecStart=/usr/bin/mtcp-netdrive -log_file $LOG_FILE -log_level $LOG_LEVEL serve -headless -port $PORT -image_dir $IMAGE_DIR -max_active_sessions $MAX_SESSIONS
+ExecStart=/bin/bash -c ' \
+    CMD="/usr/bin/mtcp-netdrive"; \
+    CMD+=" -log_file $LOG_FILE -log_level $LOG_LEVEL"; \
+    CMD+=" serve -headless -port $PORT"; \
+    CMD+=" -image_dir $IMAGE_DIR"; \
+    [ -n "$SESSION_SCOPED_WRITES_DIR" ]    && CMD+=" -session_scoped_writes_dir $SESSION_SCOPED_WRITES_DIR"; \
+    [ -n "$SESSION_MAX_COUNT" ]            && CMD+=" -max_active_sessions $SESSION_MAX_COUNT"; \
+    [ -n "$SESSION_TIMEOUT_MINUTES" ]      && CMD+=" -timeout=$SESSION_TIMEOUT_MINUTES"; \
+    [ -n "$SESSION_MAX_DURATION_MINUTES" ] && CMD+=" -max_time=$SESSION_MAX_DURATION_MINUTES"; \
+    exec $CMD'
 EnvironmentFile=/etc/mtcp-netdrive.conf
 Restart=always
 StandardOutput=journal

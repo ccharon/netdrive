@@ -50,7 +50,7 @@ src_prepare() {
 
     # Binary patch to use udp4 on amd64
     if [[ ${ARCH} == "amd64" ]]; then
-        bspatch "${S}/netdrive" "${S}/netdrive_patched" "${FILESDIR}/patch-${PV}.bin"
+        bspatch "${S}/netdrive" "${S}/netdrive_patched" "${FILESDIR}/patch-amd64-${PV}.bin"
         mv "${S}/netdrive_patched" "${S}/netdrive"
     fi
 
@@ -77,6 +77,12 @@ src_install() {
     keepdir "${MTCP_IMAGE_DIR}"
     fowners mtcp-netdrive:mtcp-netdrive "${MTCP_IMAGE_DIR}"
     fperms 0750 "${MTCP_IMAGE_DIR}"
+
+    # Create session storage directory
+    MTCP_SESSION_DIR="/var/lib/mtcp-netdrive/sessions"
+    keepdir "${MTCP_SESSION_DIR}"
+    fowners mtcp-netdrive:mtcp-netdrive "${MTCP_SESSION_DIR}"
+    fperms 0750 "${MTCP_SESSION_DIR}"
 
     # Create the log directory
     MTCP_LOG_DIR="/var/log/mtcp-netdrive"
