@@ -80,5 +80,4 @@ pkg_postinst() {
     einfo
     einfo "To start the mTCP NetDrive server, enable and start the systemd service:"
     einfo "systemctl enable ${PN}.service --now"
-
 }
