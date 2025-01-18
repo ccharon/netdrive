@@ -2,8 +2,6 @@
 This repo provides M. Brutmans mTCP NetDrive as Systemd Service.
 https://www.brutman.com/mTCP/mTCP_NetDrive.html
 
-Right now as of release 20240816, the ebuild is only tested on amd64. The netdrive executable was only binding to ipv6. As a temporary workaround, the ebuild will patch the executable to bind to ipv4. The patch is based on a testing version provided by M. Brutman. Also the patch is amd64 only.
-
 ### Adding the repo
 to add this repo to your installation use
 ```bash
