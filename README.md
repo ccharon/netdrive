@@ -32,6 +32,7 @@ $ mtcp-netdrive create hd 256 FAT16B /var/lib/mtcp-netdrive/disk.dsk
 $ chown mtcp-netdrive:mtcp-netdrive /var/lib/mtcp-netdrive/disk.dsk
 $ chmod 660 /var/lib/mtcp-netdrive/disk.dsk
 ```
+FAT12 and FAT16 images are limited to 32MB. Use FAT16B for larger images.
 
 ### Other Things
 
@@ -48,7 +49,11 @@ $ systemctl start mtcp-netdrive
 
 #### Firewall
 
-If you have a firewall installed be sure to allow access to port 8086 or what ever port you selected in the config file.
+If you have a firewall installed be sure to allow access to UDP port 8086 or what ever port you selected in the config file.
+
+Clients using protocol version 3 send writes of up to 32KB as fragmented UDP packets, so IP fragments must not be dropped.
+
+To listen on a single interface only, set `BIND_ADDR` in the config file.
 
 #### MSDOS Client
 
